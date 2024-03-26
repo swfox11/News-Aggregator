@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Feed</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* display: flex; */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: rgb(145 143 145);
+            color: rgb(255, 255, 255);
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            /* max-width: 1200px; Adjust max-width as needed */
+        }
+        .card-btm{
+            display: flex;
+        }
+        .filter {
+            position: fixed;
+            top: 0.8vw;
+            left: 0.8vw;
+            bottom: 0.8vw;
+            right: 1vw;
+            /* width: 100%; Adjust the width as needed */
+            
+            background-color: #79727a; /* Example background color */
+            padding: 2vw;
+            box-sizing: border-box;
+            overflow-y: auto; /* Allow scrolling if content exceeds the height */
+            margin-right: 70%;
+            border-radius: 16px;
+            font-size: 2.2vw;
+        }
+        /* .filter form{
+            width: 80%;
+        } */
+        .card-container {
+            width: 70%;
+            padding: 2vw;
+            box-sizing: border-box;
+            overflow-y: auto; /* Enable vertical scrolling if needed */
+            margin-left: 30%;
+            display: inline;
+        }
+        .username {
+        position: fixed;
+        top: 1vw;
+        right: 1vw;
+        background-color: #333;
+        color: #fff;
+        padding: 0.5vw 1vw;
+        border-radius: 5px;
+        font-size: 1.5vw;
+        }
+        .card {
+            background-color: #1c1c1c;
+            color: white;
+            padding: 2vw;
+            margin-bottom: 2vw;
+            margin: 5%;
+            border-radius: 1vw;
+            box-shadow: 0px 0px 4vw 1vw rgba(0, 0, 0, 0.3);
+            
+        }
+
+        .card img {
+            max-width: 100%;
+            height: 30%;
+            margin-bottom: 1vw;
+            border-radius: 1.6vw;
+        }
+
+        .card h2 {
+            margin-bottom: 1.5vw;
+            font-size: 2vw;
+        }
+
+        .card p {
+            margin-bottom: 1vw;
+            font-size: 1.4vw;
+        }
+        .card #info p{
+            color: rgb(243, 164, 228);
+            margin: 0.3vw;
+            font-size: 1.1vw;
+        }
+        .card a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 1.7vw;
+        }
+
+        .card a:hover {
+            text-decoration: underline;
+        }
+
+        .button{
+            padding: 1vw 2vw;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.3vw;
+            margin-bottom: 0.1vw;
+            text-decoration: none;
+        }
+
+        #delete
+        {
+            background-color: red;
+            color: #fff;
+        }
+        #delete:hover
+        {
+            background-color: #891010;
+        }
+                #bmdiv{
+                    margin-left: 25vw;
+                }
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        
+        
+    </style>
+    
+</head>
+<body>
+    <div class="username" id="usernameDisplay">Welcome <%= locals.user %></div>
+    <div class="container">
+        <div class="filter">
+            <!-- <form id="selectionForm" method="post" action="/live"> -->
+                <div>
+                    <a href="/" class="button">Home</a><br><br>
+                    <a href="/logout" class="button">Logout</a><br><br>
+                    <a href="/user" class="button">Personalised news feed</a><br><br>
+
+                    
+                </div>
+                
+            <!-- </form> -->
+        </div>
+        <div class="card-container">
+            <% if(locals.array){ %>
+                <div class="card">
+                    <h1>Your Bookmarked Articles</h1>
+                </div>
+            
+            <% let n=locals.array.length; %>
+            <% for(let i=0;i<n;i++){ %>
+            <div class="card">
+                <h2><%= array[i].title %></h2>
+                <a href="<%= array[i].url %>"><img style="max-height:65vh;" src="<%= array[i].urltoimage %>" alt="image not available" ></a>
+                <p><%= array[i].description %></p>
+                <a href="<%= array[i].url %>">Read Full Article</a>
+                <p> <%= array[i].content %></p>
+            <div class="card-btm">
+                    <div id="info">
+                        <p>Source: <%= array[i].sourcename %></p>
+                        <p>Author: <%= array[i].author %></p>
+                        <p>Published: <%= array[i].publishedat %></p>
+                        
+                    </div>
+                    <div id="bmdiv">
+                        
+                        <a class="button" id="delete" href="/bookmark/delete/<%= array[i].id %>">Remove</a>
+                    </div>
+            </div>
+              
+              
+            
+            </div>
+            <% } %>
+            <% } else { %>
+                <h1>No bookmarked articles.</h1>
+            <% } %>
+        </div>
+    </div>
+    
+</body>
+</html>

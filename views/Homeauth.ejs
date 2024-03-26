@@ -1,0 +1,101 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Aggregator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* display: flex; */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: rgb(145 143 145);
+            color: rgb(255, 255, 255);
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            /* max-width: 1200px; Adjust max-width as needed */
+        }
+
+        .filter {
+            position: fixed;
+            top: 3vw;
+            left: 0.8vw;
+            bottom: 0.8vw;
+            right: 1vw;
+            /* width: 100%; Adjust the width as needed */
+            
+            background-color: #79727a; /* Example background color */
+            padding: 2vw;
+            box-sizing: border-box;
+            overflow-y: auto; /* Allow scrolling if content exceeds the height */
+            margin-right: 50%;
+            border-radius: 16px;
+            font-size: 2.2vw;
+        }
+        /* .filter form{
+            width: 80%;
+        } */
+        
+
+        .button {
+            padding: 1vw 2vw;
+            background-color: #077a5f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.3vw;
+            margin-bottom: 0.1vw;
+            text-decoration: none;
+                
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Custom dropdown style */
+        
+
+        /* Adjust select arrow for Firefox */
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="filter">
+            <h2>Let's personalize your news feed first</h2>
+            <h2>Choose the kind of news you want in your feed</h2>
+            <form id="selectionForm" method="post" action="/live">
+
+                
+                <div>
+                    <a href="/auth/live" class="button">Live Headlines</a> <br><br>
+                    <a href="/auth/all" class="button">All News</a><br><br>
+                    <a href="/" class="button">Home</a><br><br>
+                    
+                </div>
+
+                
+
+            
+            </form>
+        </div>
+        
+    </div>
+    
+      
+</body>
+</html>

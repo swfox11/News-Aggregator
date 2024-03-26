@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Feed</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* display: flex; */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: rgb(145 143 145);
+            color: rgb(255, 255, 255);
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            /* max-width: 1200px; Adjust max-width as needed */
+        }
+
+        .filter {
+            position: fixed;
+            top: 0.8vw;
+            left: 0.8vw;
+            bottom: 0.8vw;
+            right: 1vw;
+            /* width: 100%; Adjust the width as needed */
+            
+            background-color: #79727a; /* Example background color */
+            padding: 2vw;
+            box-sizing: border-box;
+            overflow-y: auto; /* Allow scrolling if content exceeds the height */
+            margin-right: 70%;
+            border-radius: 16px;
+            font-size: 2.2vw;
+        }
+        /* .filter form{
+            width: 80%;
+        } */
+        .card-container {
+            width: 70%;
+            padding: 2vw;
+            box-sizing: border-box;
+            overflow-y: auto; /* Enable vertical scrolling if needed */
+            margin-left: 30%;
+            display: inline;
+        }
+
+        .card {
+            background-color: #1c1c1c;
+            color: white;
+            padding: 2vw;
+            margin-bottom: 2vw;
+            margin: 5%;
+            border-radius: 1vw;
+            box-shadow: 0px 0px 4vw 1vw rgba(0, 0, 0, 0.3);
+            
+        }
+
+        .card img {
+            max-width: 100%;
+            height: 30%;
+            margin-bottom: 1vw;
+            border-radius: 1.6vw;
+        }
+
+        .card h2 {
+            margin-bottom: 1.5vw;
+            font-size: 2vw;
+        }
+
+        .card p {
+            margin-bottom: 1vw;
+            font-size: 1.4vw;
+        }
+        .card #info p{
+            color: rgb(243, 164, 228);
+            margin: 0.3vw;
+            font-size: 1.1vw;
+        }
+        .card a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 1.7vw;
+        }
+
+        .card a:hover {
+            text-decoration: underline;
+        }
+
+        .button {
+            padding: 1vw 2vw;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.3vw;
+            margin-bottom: 0.1vw;
+            text-decoration: none;
+                }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Custom dropdown style */
+        select, input{
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            padding: 1vw 2vw;
+            border: 0.1vw solid #ccc;
+            border-radius: 4vw;
+            background-color: #19191f;
+            color: rgb(254, 255, 255);
+            font-size: 1.1vw;
+            margin-bottom: 10px;
+            width: 20vw;
+        }
+
+        /* Adjust select arrow */
+        select::-ms-expand {
+            display: none;
+        }
+
+        /* Adjust select arrow for Chrome/Edge */
+        select::-webkit-inner-spin-button, select::-webkit-outer-spin-button {
+            appearance: none;
+            margin: 0;
+        }
+
+        /* Adjust select arrow for Firefox */
+        select::-moz-focus-inner {
+            border: 0;
+            padding: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5vw;
+            color: rgb(255, 255, 255);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="filter">
+            <form id="selectionForm" method="post" action="/live" >
+
+                <!-- country search -->
+            <label for="country">Search a country</label>
+            <select id="countrySelect" name="country">
+                <option value="" selected disabled>Enter a country name</option>
+                <option value="ae">United Arab Emirates</option>
+                <option value="ar">Argentina</option>
+                <option value="at">Austria</option>
+                <option value="au">Australia</option>
+                <option value="be">Belgium</option>
+                <option value="bg">Bulgaria</option>
+                <option value="br">Brazil</option>
+                <option value="ca">Canada</option>
+                <option value="ch">Switzerland</option>
+                <option value="cn">China</option>
+                <option value="co">Colombia</option>
+                <option value="cu">Cuba</option>
+                <option value="cz">Czech Republic</option>
+                <option value="de">Germany</option>
+                <option value="eg">Egypt</option>
+                <option value="fr">France</option>
+                <option value="gb">United Kingdom</option>
+                <option value="gr">Greece</option>
+                <option value="hk">Hong Kong</option>
+                <option value="hu">Hungary</option>
+                <option value="id">Indonesia</option>
+                <option value="ie">Ireland</option>
+                <option value="il">Israel</option>
+                <option value="in">India</option>
+                <option value="it">Italy</option>
+                <option value="jp">Japan</option>
+                <option value="kr">South Korea</option>
+                <option value="lt">Lithuania</option>
+                <option value="lv">Latvia</option>
+                <option value="ma">Morocco</option>
+                <option value="mx">Mexico</option>
+                <option value="my">Malaysia</option>
+                <option value="ng">Nigeria</option>
+                <option value="nl">Netherlands</option>
+                <option value="no">Norway</option>
+                <option value="nz">New Zealand</option>
+                <option value="ph">Philippines</option>
+                <option value="pl">Poland</option>
+                <option value="pt">Portugal</option>
+                <option value="ro">Romania</option>
+                <option value="rs">Serbia</option>
+                <option value="ru">Russia</option>
+                <option value="sa">Saudi Arabia</option>
+                <option value="se">Sweden</option>
+                <option value="sg">Singapore</option>
+                <option value="si">Slovenia</option>
+                <option value="sk">Slovakia</option>
+                <option value="th">Thailand</option>
+                <option value="tr">Turkey</option>
+                <option value="tw">Taiwan</option>
+                <option value="ua">Ukraine</option>
+                <option value="us">United States</option>
+                <option value="ve">Venezuela</option>
+                <option value="za">South Africa</option>
+
+            </select><br><br>
+
+                <!-- category search -->
+            <label for="category">Choose a category:</label>
+            <select id="category" name="category">
+                <option value="" selected disabled>Enter a catagory</option>
+                <option value="business">Business</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="general">General</option>
+                <option value="health">Health</option>
+                <option value="science">Science</option>
+                <option value="sports">Sports</option>
+                <option value="technology">Technology</option>
+            </select><br><br>
+             
+            <!-- Query search -->
+            <label for="searchQuery">Search key words or phrases</label>
+            <input type="text" id="searchInput" name="searchQuery" placeholder="Enter your search query"><br><br>
+
+                
+
+                <button type="submit" class="button">Submit</button>
+            </form><br><br>
+            <a href="/" class="button">Home</a><br><br>
+
+
+        </div>
+        <div class="card-container">
+            <% if(locals.array){ %>
+                <div class="card">
+                    <h1>Your Search Results</h1>
+                </div>
+            
+            <% let n=locals.array.length; %>
+            <% for(let i=0;i<n;i++){ %>
+            <div class="card">
+                <h2><%= array[i].title %></h2>
+                <a href="<%= array[i].url %>"><img style="max-height:65vh;" src="<%= array[i].urlToImage %>" alt="image not available" ></a>
+                <p><%= array[i].description %></p>
+                <a href="<%= array[i].url %>">Read Full Article</a>
+                <p> <%= array[i].content %></p>
+              <div id="info">
+                <p>Source: <%= array[i].source.name %></p>
+                <p>Author: <%= array[i].author %></p>
+                <p>Published: <%= array[i].publishedAt %></p>
+              </div>
+            </div>
+            <% } %>
+            <% } else { %>
+            <h1>You will get news articles here if your search matches any article.</h1>
+            <% } %>
+        </div>
+    </div>
+    <script>
+        const countrySelect = document.getElementById("countrySelect");
+        countrySelect.addEventListener("change", function() {
+          const selectedOption = this.options[this.selectedIndex];
+          const countryName = selectedOption.text;
+          selectedOption.text = "Search: " + countryName;
+        });
+
+        const category = document.getElementById("category");
+        category.addEventListener("change", function() {
+          const selectedOption = this.options[this.selectedIndex];
+          const categoryName = selectedOption.text;
+          selectedOption.text = "Search: " + categoryName;
+        });
+      </script>
+</body>
+</html>
+
+
+
+
