@@ -40,7 +40,22 @@
             margin-right: 70%;
             border-radius: 16px;
             font-size: 2.2vw;
+            transition: left 0.5s ease;
         }
+        #toggleFilter{
+            margin-left:17vw ;
+            background-color:#79727a;
+        }
+        .filter.show {
+            left: -20vw; /* Show the filter section */
+            margin-right: 90%;
+        }
+        .card-container.show{
+            margin-left: 10%;
+            width: 100%;
+
+        }
+
         /* .filter form{
             width: 80%;
         } */
@@ -140,8 +155,14 @@
 <body>
     <div class="username" id="usernameDisplay">Welcome <%= locals.user %></div>
     <div class="container">
-        <div class="filter">
+        <div class="filter" id="filter">
             <!-- <form id="selectionForm" method="post" action="/live"> -->
+                <button id="toggleFilter" class="button"><svg viewBox="0 0 100 80" width="3vw" height="3vw">
+                    <rect width="100" height="20" rx="10"></rect>
+                    <rect y="30" width="100" height="20" rx="10"></rect>
+                    <rect y="60" width="100" height="20" rx="10"></rect>
+                    </svg>
+                </button><br>
                 <div>
                     <a href="/" class="button">Home</a><br><br>
                     <a href="/logout" class="button">Logout</a><br><br>
@@ -152,7 +173,7 @@
                 
             <!-- </form> -->
         </div>
-        <div class="card-container">
+        <div class="card-container" id="card-container">
             <% if(locals.array){ %>
                 <div class="card">
                     <h1>Your Bookmarked Articles</h1>
@@ -188,6 +209,15 @@
             <% } %>
         </div>
     </div>
-    
+    <script>
+        const toggleFilterButton = document.getElementById("toggleFilter");
+        const filterSection = document.getElementById("filter");
+        const newsSection = document.getElementById("card-container");
+
+        toggleFilterButton.addEventListener("click", function() {
+            filterSection.classList.toggle("show");
+            newsSection.classList.toggle("show");
+        });
+    </script>
 </body>
 </html>

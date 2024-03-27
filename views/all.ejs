@@ -37,6 +37,7 @@
             margin-right: 70%;
             border-radius: 16px;
             font-size: 2.2vw;
+            transition: left 0.5s ease;
         }
         /* .filter form{
             width: 80%;
@@ -59,6 +60,19 @@
             border-radius: 1vw;
             box-shadow: 0px 0px 4vw 1vw rgba(0, 0, 0, 0.3);
             
+        }
+        #toggleFilter{
+            margin-left:17vw ;
+            background-color:#79727a;
+        }
+        .filter.show {
+            left: -20vw; /* Show the filter section */
+            margin-right: 90%;
+        }
+        .card-container.show{
+            margin-left: 10%;
+            width: 100%;
+
         }
 
         .card img {
@@ -149,7 +163,13 @@
 </head>
 <body>
     <div class="container">
-        <div class="filter">
+        <div class="filter" id="filter">
+            <button id="toggleFilter" class="button"><svg viewBox="0 0 100 80" width="3vw" height="3vw">
+                <rect width="100" height="20" rx="10"></rect>
+                <rect y="30" width="100" height="20" rx="10"></rect>
+                <rect y="60" width="100" height="20" rx="10"></rect>
+                </svg>
+            </button><br>
             <form id="selectionForm" method="post" action="/all">
                 <!-- Query search -->
                 <label for="searchQuery">Search key words or phrases</label>
@@ -188,7 +208,7 @@
             </form><br><br>
             <a href="/" class="button">Home</a><br><br>
         </div>
-        <div class="card-container">
+        <div class="card-container" id="card-container">
             <% if(locals.array){ %>
                 <div class="card">
                     <h1>Your Search Results</h1>
@@ -227,6 +247,14 @@
           const selectedOption = this.options[this.selectedIndex];
           const sortName = selectedOption.text;
           selectedOption.text = "Sort By: " + sortName;
+        });
+        const toggleFilterButton = document.getElementById("toggleFilter");
+        const filterSection = document.getElementById("filter");
+        const newsSection = document.getElementById("card-container");
+
+        toggleFilterButton.addEventListener("click", function() {
+            filterSection.classList.toggle("show");
+            newsSection.classList.toggle("show");
         });
     </script>
 </body>
