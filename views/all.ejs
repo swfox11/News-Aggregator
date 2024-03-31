@@ -66,8 +66,11 @@
             background-color:#79727a;
         }
         .filter.show {
-            left: -20vw; /* Show the filter section */
+            left: -34vw; /* Show the filter section */
             margin-right: 90%;
+        }
+        #toggleFilter.show{
+            margin-left:32vw ;
         }
         .card-container.show{
             margin-left: 10%;
@@ -255,6 +258,7 @@
         toggleFilterButton.addEventListener("click", function() {
             filterSection.classList.toggle("show");
             newsSection.classList.toggle("show");
+            toggleFilterButton.classList.toggle("show");
         });
     </script>
 </body>

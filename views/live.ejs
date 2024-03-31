@@ -38,11 +38,14 @@
             margin-right: 70%;
             border-radius: 16px;
             font-size: 2.2vw;
-            transition: left 0.4s ease;
+            transition: left 0.5s ease;
         }
         .filter.show {
-            left: -20vw; /* Show the filter section */
+            left: -34vw; /* Show the filter section */
             margin-right: 90%;
+        }
+        #toggleFilter.show{
+            margin-left:32vw ;
         }
         .card-container.show{
             margin-left: 10%;
@@ -122,6 +125,10 @@
             margin-left:17vw ;
             background-color:#79727a;
         }
+        
+        /* .toggle_btn_clicked{
+            margin-left:17vw ;
+        } */
         /* Custom dropdown style */
         select, input{
             appearance: none;
@@ -174,7 +181,6 @@
             <form id="selectionForm" method="post" action="/live" >
 
                 <!-- country search -->
-            
             <label for="country">Search a country</label>
             <select id="countrySelect" name="country">
                 <option value="" selected disabled>Enter a country name</option>
@@ -259,8 +265,6 @@
             <a href="/" class="button">Home</a><br><br>
 
             
-
-
         </div>
         <div class="card-container" id="card-container">
             <% if(locals.array){ %>
@@ -288,7 +292,6 @@
             <% } %>
         </div>
     </div>
-     <!-- Button to toggle filter -->
     <script>
         const countrySelect = document.getElementById("countrySelect");
         countrySelect.addEventListener("change", function() {
@@ -310,7 +313,9 @@
         toggleFilterButton.addEventListener("click", function() {
             filterSection.classList.toggle("show");
             newsSection.classList.toggle("show");
+            toggleFilterButton.classList.toggle("show");
         });
+        
       </script>
 </body>
 </html>
